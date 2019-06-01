@@ -1,0 +1,119 @@
+
+library('caret')
+
+#view all data 
+iris
+
+#view all data in table 
+View(iris) 
+
+
+#show structure 
+str(iris)
+
+
+#show factor 
+iris$Species
+
+
+#distict category /names (unique label)
+levels(dataset$Species)
+
+
+#show frequency of data/ group by 
+table(dataset$Species)  
+
+#dat pecentagle 
+percentage <- prop.table(table(dataset$Species)) * 100
+
+#TRAIN(SAMPLE) AND TEST DATA (VALIDATION DATA)
+#DATAFRAME : 80% 20% 
+
+#show no of vector 
+length( iris)
+
+#show no of rows 
+length( iris$Species)
+
+
+# 80%  of 150 = 120 rows
+# 20%  of 150 = 30 rows
+
+validation_index <- createDataPartition(iris$Species, p=0.80, list=FALSE)
+
+
+validation  <- iris[-validation_index,] #all columns   20% = 30 rows
+dim( validation )  #show dimensssion  : no of rows and vector (column)
+
+train  <- iris[validation_index,] #all columns  80% = 120 rows  
+dim( train )
+
+
+#summary  : show stats 
+summary(iris)
+
+#
+cbind(levels(dataset$Species),percentage)
+
+
+##
+head(iris)
+
+
+
+
+
+#x (numeric vectory ) , y (factor)
+# split input and output
+x <- iris[,1:4] # all rows , 1 to 4 columns 
+y <- iris[,5]  
+
+
+#boxplot 
+boxplot(x)
+
+
+par(mfrow=c(1,4))
+
+for(i in 1:4) {
+  boxplot(x[,i], main=names(iris)[i])
+}
+
+
+# barplot for class breakdown
+plot(y)
+
+
+
+
+set.seed(7)
+fit.lda <- train(Species~., data=dataset, method="lda", metric=metric, trControl=control)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
